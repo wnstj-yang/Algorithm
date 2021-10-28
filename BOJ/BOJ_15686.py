@@ -1,9 +1,10 @@
 # Baekjoon Online Judge - 15686번. 치킨 배달
+# 최대 M까지 구하는 것인줄 알았으나 치킨집이 많을수록 치킨 거리가 짧아지므로 M크기의 조합만 구하면된다!!!!
+# 각 집에서 가까운 치킨집을 선택하기 때문
 
-
-def check(k, idx, t):
+def check(k, idx):
     global result
-    if k == t:
+    if k == M:
         cnt = 0
         for j in range(h_length):
             h_x, h_y = home_list[j]
@@ -27,14 +28,14 @@ def check(k, idx, t):
             visited[i] = True
             ans_list[k] = stores[i]
             # idx+1로 해놔서 시간초과 발생, i값 넣어야 조합
-            check(k+1, i+1, t)
+            check(k+1, i+1)
             visited[i] = False
 
 
 N, M = map(int, input().split())
 city_info = [list(map(int, input().split())) for _ in range(N)]
 
-# 1. 최대 M까지의 치킨집의 수 => 조합을 구해야함
+# 1. 최대 M까지의 치킨집의 수 => 조합을 구해야함 => M만 구해도 된다.
 # 2. 집의 위치를 구한 곳에서 조합을 통해 구한 치킨집의 수와 위치에 대한 거리값 계산
 # 3. 조합의 경우의 수에서 거리 값의 최소 값을 구한다
 
@@ -50,8 +51,7 @@ for i in range(N):
 result = 987654321
 visited = [False] * len(stores)
 h_length, s_length = len(home_list), len(stores)
-# 최대 M까지
-for i in range(1, M+1):
-    ans_list = [0] * i
-    check(0, 0, i)
+# 최대 M까지 => M만
+ans_list = [0] * M
+check(0, 0)
 print(result)
