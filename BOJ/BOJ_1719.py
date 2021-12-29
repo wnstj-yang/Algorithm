@@ -28,17 +28,18 @@ result = [['-'] * (n + 1) for _ in range(n + 1)]
 
 for _ in range(m):
     a, b, c = map(int, input().split())
+    # 무방향 그래프
     graph[a].append((b, c))
     graph[b].append((a, c))
+
+# 모든 노드의 시작으로부터 다른 모든 노드들의 최단경로를 구해야함
 for i in range(1, n + 1):
     distance = [INF] * (n + 1)
-    station = ['-'] * (n + 1)
     dijkstra(i)
     for j in range(n + 1):
         if distance[j] == INF:
             distance[j] = '-'
 
-    # print(distance[1:])
 
 for i in range(1, n + 1):
     for j in range(1, n + 1):
