@@ -13,7 +13,7 @@ def solution(triangle):
             # 3. 그 이외의 경우 현재 값에서 대각선 왼쪽 위와 오른쪽 위와 더했을 때 최댓값을 넣는다
             else:
                 triangle[i][j] = max(now + triangle[i - 1][j - 1], now + triangle[i - 1][j])
-        # 4. 각 행마다 최댓값을 갱신했으므로 그 중에서 최댓값을 똑같이 갱신시킨다.
-        answer = max(answer, max(triangle[i]))
+    # 4. 마지막 행 중의 값에서 최댓값
+    answer = max(triangle[-1])
 
     return answer
