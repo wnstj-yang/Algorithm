@@ -12,10 +12,12 @@ while left <= right:
     cnt = 0
     for i in range(1, len(rest_areas)):
         if rest_areas[i] - rest_areas[i - 1] > mid:
-            cnt += (rest_areas[i] - rest_areas[i - 1] - 1) // mid
-
+            cnt += (rest_areas[i] - rest_areas[i - 1] - 1) // mid # 1을 빼주는 이유는 같은 자리에 휴게소 설치가 불가능 하기 때문
+            
+    # 휴게소 설치 개수가 M보다 많으면 줄여야 하므로 left 증가
     if cnt > M:
         left = mid + 1
+    # 휴게소 설치 개수가 M보다 작거나 같다면 늘려준다
     else:
         right = mid - 1
         result = mid
