@@ -7,6 +7,8 @@ class Solution(object):
                 nums_cnt[num] = 1
             else:
                 nums_cnt[num] += 1
-        result = sorted(nums_cnt.items(), key=lambda x:(-x[1]))
-        return result[0][0]
+            if nums_cnt[num] > len(nums) / 2:
+                return num
+        # result = sorted(nums_cnt.items(), key=lambda x:(-x[1]))
+        # return result[0][0]
                 
